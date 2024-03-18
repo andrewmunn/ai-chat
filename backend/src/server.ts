@@ -1,8 +1,9 @@
 import dotenv from 'dotenv';
+dotenv.config();
+
 import app from './app';
 import mongoose from 'mongoose';
 
-dotenv.config();
 
 mongoose.set('debug', true);
 mongoose.connect(process.env.MONGO_URI!!)
@@ -12,5 +13,5 @@ mongoose.connect(process.env.MONGO_URI!!)
 
 const port = process.env.PORT;
 app.listen(port, () => {
-    console.log(`Example app listening on port ${port}`)
-  })
+  console.log(`Example app listening on port ${port}`)
+})

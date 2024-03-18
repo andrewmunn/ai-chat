@@ -17,6 +17,7 @@ const MessageSchema: Schema = new Schema({
 
 export interface IThread extends mongoose.Document {
     _id: ObjectId;
+    userId: ObjectId;
     messages: Types.DocumentArray<IMessage>;
     title: string;
     tokens: number;
@@ -25,6 +26,7 @@ export interface IThread extends mongoose.Document {
 }
 
 const ThreadSchema: Schema = new Schema({
+    userId: { type: Schema.Types.ObjectId, ref: 'User', required: true, index: true },
     title: { type: String, required: true, default: "New Thread"},
     tokens: { type: Number, required: true, default: 0},
     messages: [MessageSchema],
