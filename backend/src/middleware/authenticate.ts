@@ -9,8 +9,17 @@ declare module 'express-serve-static-core' {
 }
 
 const authenticate = async (req: Request, res: Response, next: NextFunction) => {
+
     // Get the JWT cookie from the request
-    const token = req.cookies.token;
+    let token = req.cookies.token;
+
+    if (!token) {
+        // Get the JWT token from the request header
+        const authHeader = req.headers.authorization;
+        if (authHeader) {
+            token = authHeader.split(' ')[1];
+        }
+    }
 
     // Check if the token exists
     if (!token) {

@@ -6,7 +6,7 @@ const router = express.Router();
 router.use(authenticate);
 
 router.get('/', async (req: Request, res: Response) => {
-    res.json(await Thread.find({ userId: req.user._id }));
+    res.json(await Thread.find({ userId: req.user._id }).sort({ updatedAt: -1 }));
 });
 
 router.get('/:threadId', async (req: Request, res: Response) => {

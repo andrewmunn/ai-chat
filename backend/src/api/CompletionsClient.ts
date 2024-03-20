@@ -17,7 +17,7 @@ export default async function getCompletion(messages: IMessage[]): Promise<strin
         const response = await apiClient.post('/chat/completions', {
             model: "gpt-3.5-turbo",
             messages: messagesToSubmit,
-            max_tokens: 50,
+            max_tokens: 1000,
         });
         console.log(response.data)
         return response.data.choices[0].message.content.trim();
